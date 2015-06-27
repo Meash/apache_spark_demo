@@ -1,0 +1,19 @@
+apply plugin: 'java'
+
+group = 'se.studieren.vs'
+sourceCompatibility = 1.8
+version = '0.2'
+
+ext.moduleName = 'Spark_Demo'
+ext.mainClass = 'se.studieren.vs.Main'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.apache.spark:spark-core_2.10:1.4.0'
+    compile 'org.scala-lang:scala-library:2.7.2'
+
+    testCompile 'junit:junit:4.11'
+}
