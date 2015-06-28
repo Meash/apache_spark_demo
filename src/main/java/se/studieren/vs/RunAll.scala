@@ -1,30 +1,25 @@
 package se.studieren.vs
 
-import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.SparkContext
 import se.studieren.vs.examples.{Example, PiExample}
 
-object RunAll {
+object RunAll extends AbstractRun {
+  val waitUserInput = true
   val examples: Array[Example] =
     Array(
       new PiExample
     )
 
   def main(args: Array[String]) {
-    val spark =
-      if (args.length > 0) {
-        val masterUrl = args(0)
-        val conf = new SparkConf()
-          .setAppName("SparkDemo RunAll")
-          .setMaster(masterUrl)
-        new SparkContext(conf)
-      } else {
-        RunServer.start(slaves = 10)
-      }
+    run(args)
+  }
 
+  override def execute(spark: SparkContext): Unit =
     for (example <- examples) {
+      if(waitUserInput) {
+        println("Press <Enter> to run " + example.getClass.getSimpleName)
+        readLine()
+      }
       example.run(spark)
     }
-
-    spark.stop()
-  }
 }
