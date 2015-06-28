@@ -2,7 +2,7 @@ apply plugin: 'java'
 
 group = 'se.studieren.vs'
 sourceCompatibility = 1.8
-version = '0.2'
+version = '1.0'
 
 ext.moduleName = 'Spark_Demo'
 ext.mainClass = 'se.studieren.vs.Main'
@@ -14,6 +14,8 @@ repositories {
 dependencies {
     compile 'org.apache.spark:spark-core_2.10:1.4.0'
     compile 'org.scala-lang:scala-library:2.7.2'
+
+    compile 'log4j:log4j:1.2.16'
 
     testCompile 'junit:junit:4.11'
 }

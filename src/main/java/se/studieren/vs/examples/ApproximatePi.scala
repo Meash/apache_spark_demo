@@ -1,5 +1,6 @@
 package se.studieren.vs.examples
 
+import org.apache.log4j.{LogManager, Logger}
 import org.apache.spark.SparkContext
 
 import scala.math._
@@ -7,8 +8,9 @@ import scala.math._
 /**
  * @author Martin
  */
-class PiExample extends Example {
+object ApproximatePi extends Example {
   final val slices = 2
+  val logger = Logger.getLogger(ApproximatePi.getClass)
 
   override def run(spark: SparkContext) {
     val n = math.min(100000L * slices, Int.MaxValue).toInt // avoid overflow
@@ -17,6 +19,8 @@ class PiExample extends Example {
         val y = random * 2 - 1
         if (x * x + y * y < 1) 1 else 0
       }.reduce(_ + _)
-    println("Pi is roughly " + 4.0 * count / n)
+    val message: String = "Pi is roughly " + 4.0 * count / n
+    println(message)
+    logger.info(message)
   }
 }
