@@ -8,7 +8,7 @@ import scala.math._
  * @author Martin
  */
 class PiExample extends Example {
-  final val slices = 20
+  final val slices = 2
 
   override def run(spark: SparkContext) {
     val n = math.min(100000L * slices, Int.MaxValue).toInt // avoid overflow
