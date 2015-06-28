@@ -1,10 +1,10 @@
 package se.studieren.vs
 
 import org.apache.spark._
-import se.studieren.vs.examples.PiExample
+import se.studieren.vs.examples.ApproximatePi
 
 object RunOne extends AbstractRun {
-  val example = new PiExample
+  val example = ApproximatePi
 
   def main(args: Array[String]) {
     run(args)
