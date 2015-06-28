@@ -20,7 +20,7 @@ trait AbstractRun {
         "local[" + slaves + "]"
     }
     val dir = getClass.getResource("").getPath
-    val classPath = dir + "../../../../../libs/apache_spark_demo-0.2.jar"
+    val classPath = dir + "../../../../../libs/apache_spark_demo-1.0.jar"
     val conf = new SparkConf()
       .setAppName(getClass.getSimpleName)
       .setMaster(url)
@@ -28,7 +28,7 @@ trait AbstractRun {
     spark = new SparkContext(conf)
   }
 
-  def execute(spark: SparkContext) = {}
+  def execute(spark: SparkContext): Unit
 
   def tearDown(): Unit = {
     spark.stop()
