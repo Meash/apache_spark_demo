@@ -22,13 +22,15 @@ trait AbstractRun {
     val dir = getClass.getResource("").getPath
     val classPath = dir + "../../../../../libs/apache_spark_demo-1.0.jar"
     val conf = new SparkConf()
-      .setAppName(getClass.getSimpleName)
+      .setAppName(getName())
       .setMaster(url)
       .set("spark.executor.extraClassPath", classPath)
     spark = new SparkContext(conf)
   }
 
   def execute(spark: SparkContext): Unit
+
+  def getName(): String
 
   def tearDown(): Unit = {
     spark.stop()

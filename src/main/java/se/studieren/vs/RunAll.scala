@@ -18,14 +18,15 @@ object RunAll extends AbstractRun {
   override def execute(spark: SparkContext): Unit = {
     for (example <- examples) {
       if (waitUserInput) {
-        println("Press <Enter> to run " + example.getClass.getSimpleName)
+        println("Press <Enter> to run " + example.getClass.getSimpleName())
         readLine()
       }
-      println("Running " + example.getClass.getSimpleName + "...")
+      println("Running " + example.getClass.getSimpleName() + "...")
       example.run(spark)
     }
     println("Press <Enter> to quit")
     readLine()
   }
 
+  override def getName(): String = return getClass().getSimpleName()
 }

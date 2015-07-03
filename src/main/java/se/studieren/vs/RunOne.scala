@@ -1,10 +1,10 @@
 package se.studieren.vs
 
 import org.apache.spark._
-import se.studieren.vs.examples.ApproximatePi
+import se.studieren.vs.examples.TextSearch
 
 object RunOne extends AbstractRun {
-  val example = ApproximatePi
+  val example = TextSearch
 
   def main(args: Array[String]) {
     run(args)
@@ -12,4 +12,6 @@ object RunOne extends AbstractRun {
 
   override def execute(spark: SparkContext): Unit =
     example.run(spark)
+
+  override def getName(): String = getClass().getSimpleName + ": " + example.getClass().getSimpleName()
 }
